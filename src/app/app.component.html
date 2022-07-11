@@ -1,5 +1,5 @@
 <span style="text-align: center">
-  <h1>Clinical Trials Api Samples Site</h1>
+  <h1 style="color: silver">Clinical Trials Api Samples Site</h1>
   <p>
     <em>Stay tuned...</em>
     <br />
@@ -22,40 +22,55 @@
           [formGroup]="trialsForm"
           style="width: 100%; border: 1px solid cyan"
         >
-          <label for="condition">Condition: </label>
+          <br />
+          <label for="condition" style="color: silver">Condition: </label>
           <input
             id="condition"
             type="text"
             formControlName="condition"
           /><br /><br />
-          <label for="location">Location: </label>
+          <label for="location" style="color: silver">Location: </label>
           <input
             id="location"
             type="text"
             formControlName="location"
           /><br /><br />
 
-          <label for="age">Age: </label>
+          <label for="age" style="color: silver">Age: </label>
           <input id="age" type="text" formControlName="age" /><br /><br />
 
-          <label for="sex">Sex: </label>
+          <label for="sex" style="color: silver">Sex: </label>
           <input id="sex" type="text" formControlName="sex" /><br /><br />
         </form>
 
         <div style="text-align: left; color: gold">JSON Payload:</div>
         <div style="border: 2px solid gold">
+          <br />
           condition: <span>{{ trialsForm.value.condition }}</span>
           <br />
           location: <span>{{ trialsForm.value.location }}</span>
           <br />
           age: <span>{{ trialsForm.value.age }}</span>
           <br />
-          sex: <span>{{ trialsForm.value.sex }}</span>
+          sex: <span>{{ trialsForm.value.sex }}</span
+          ><br /><br />
         </div>
+        <div>
+          <button
+            class="btn btn-warning"
+            type="button"
+            (click)="trialsButton(trialsForm)"
+          >
+            Get Available Trials!
+          </button>
+        </div>
+
         <br /><br />
         <div style="text-align: left; color: red">GET URL:</div>
         <div style="border: 1px solid red">
-          https://clinicaltrials.gov/api/query/study_fields?expr=obesity
+          {{ trialsService.trialUrl }}
+
+          <!-- https://clinicaltrials.gov/api/query/study_fields?expr=obesity
           +AND+(AREA[Gender]All+OR+AREA[Gender]
           male)+AND+AREA[MinimumAge]RANGE[MIN,
           33+year]+AND+AREA[MaximumAge]RANGE[ 33+year,MAX]+AND+ SEARCH[Location]
@@ -63,11 +78,34 @@
           AREA[LocationStatus]Recruiting +AND+ ( AREA[LocationCity]Chicago)
           )&fields=NCTId,Condition,OrgFullName,BriefTitle,BriefSummary,MinimumAge,MaximumAge,LocationZip,
           LocationCity,LocationCountry,Gender,GenderDescription,GenderBased,HealthyVolunteers,CentralContactName,CentralContactEMail,
-          CentralContactPhone,CentralContactPhoneExt,CentralContactRole,EligibilityCriteria&min_rnk=1&max_rnk=1000&fmt=json
+          CentralContactPhone,CentralContactPhoneExt,CentralContactRole,EligibilityCriteria&min_rnk=1&max_rnk=1000&fmt=json -->
         </div>
         <div style="text-align: left; color: green">Trials Return:</div>
         <div style="border: 1px solid green">
-          {{ trials }}
+          <!-- {{ trialsString }} -->
+          <tr>
+            <th>Title</th>
+            <th>Summary</th>
+
+            <th>Eligibility</th>
+            <th>Index</th>
+          </tr>
+          <tr *ngFor="let trial of trialsArray; let i = index">
+            <td>{{ trial.BriefTitle[0] }}</td>
+            <td>{{ trial.BriefSummary[0] }}</td>
+            <td>{{ trial.EligibilityCriteria[0] }}</td>
+            <td>{{ i }}</td>
+          </tr>
+        </div>
+        <br />
+        <div style="text-align: left; color: blue">Cohort Selection:</div>
+        <div style="border: 2px solid blue">
+          <h2>to be continueed..</h2>
+        </div>
+        <br />
+        <div style="text-align: left; color: pink">Data Visualization:</div>
+        <div style="border: 2px solid pink">
+          <h2>to be continueed..</h2>
         </div>
       </div>
     </div>

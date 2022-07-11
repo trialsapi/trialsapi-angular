@@ -35,9 +35,11 @@ export class AppComponent implements OnInit {
   combinedTrialsAtAge = [];
   combinedTrialsAtSex = [];
   trials: any;
+  trialsString!: string;
+  trialsArray!: any;
   displayTrialId: any;
 
-  constructor(private fb: FormBuilder, private trialsService: TrialsService) {}
+  constructor(private fb: FormBuilder, public trialsService: TrialsService) {}
 
   ngOnInit(): void {
     // initialize main submit form
@@ -59,9 +61,34 @@ export class AppComponent implements OnInit {
       console.log(value);
     });
 
-    this.trialsService.firstTrialCall().subscribe((trials) => {
+    this.trialsService.firstTrialCall(this.trialsForm).subscribe((trials) => {
       console.log('this is the main return: ', trials);
-      this.trials = JSON.stringify(trials);
+      this.trials = trials;
+      console.log(this.trials['StudyFieldsResponse'].StudyFields);
+      this.trialsArray = this.trials['StudyFieldsResponse'].StudyFields;
+      console.log(
+        'hey, this is the important trialsArray we work with:',
+        this.trialsArray
+      );
+      this.trialsString = JSON.stringify(
+        this.trials['StudyFieldsResponse'].StudyFields
+      );
+    });
+  }
+
+  trialsButton(form: any) {
+    this.trialsService.firstTrialCall(form).subscribe((trials) => {
+      console.log('this is the main return: ', trials);
+      this.trials = trials;
+      console.log(this.trials['StudyFieldsResponse'].StudyFields);
+      this.trialsArray = this.trials['StudyFieldsResponse'].StudyFields;
+      console.log(
+        'hey, this is the important trialsArray we work with:',
+        this.trialsArray
+      );
+      this.trialsString = JSON.stringify(
+        this.trials['StudyFieldsResponse'].StudyFields
+      );
     });
   }
 }
