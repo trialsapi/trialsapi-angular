@@ -44,7 +44,7 @@ export class AppComponent implements OnInit {
     this.trialsForm = this.fb.group({
       name: new FormControl('Serge'),
       country: new FormControl('United States'),
-      condition: new FormControl('Obesity'),
+      condition: new FormControl('obesity'),
       location: new FormControl('Chicago'),
       miles: new FormControl(''),
       age: new FormControl('33'),

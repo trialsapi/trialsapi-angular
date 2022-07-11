@@ -22,9 +22,12 @@
           [formGroup]="trialsForm"
           style="width: 100%; border: 1px solid cyan"
         >
-          <label for="name">Name: </label>
-          <input id="name" type="text" formControlName="name" /><br /><br />
-
+          <label for="condition">Condition: </label>
+          <input
+            id="condition"
+            type="text"
+            formControlName="condition"
+          /><br /><br />
           <label for="location">Location: </label>
           <input
             id="location"
@@ -41,13 +44,13 @@
 
         <div style="text-align: left; color: gold">JSON Payload:</div>
         <div style="border: 2px solid gold">
-          name: <span>{{ trialsForm.value.name }}</span>
+          condition: <span>{{ trialsForm.value.condition }}</span>
           <br />
-          location:<span>{{ trialsForm.value.location }}</span>
+          location: <span>{{ trialsForm.value.location }}</span>
           <br />
-          age:<span>{{ trialsForm.value.age }}</span>
+          age: <span>{{ trialsForm.value.age }}</span>
           <br />
-          sex:<span>{{ trialsForm.value.sex }}</span>
+          sex: <span>{{ trialsForm.value.sex }}</span>
         </div>
         <br /><br />
         <div style="text-align: left; color: red">GET URL:</div>
